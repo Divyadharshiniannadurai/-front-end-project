@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Hostel Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    /* Custom styles for dashboard part */
+    #dashboard {
+      display: none;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-input {
+      border-radius: 20px;
+      border: none;
+      padding: 5px 15px;
+      outline: none;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .h4 {
+      background-color: #4b89bc;
+      color: #ffffff;
+      text-align: center;
+      line-height: 100px;
+      height: 100px;
+      border: 2px solid #f4f4f9;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-r">
+
+  <!-- Login Section -->
+  <div id="login" class="flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 relative">
+      <img src="assets/hostel image.jpg" alt="Hostel Image" class="w-full h-40 object-cover rounded-t-2xl">
+      <h2 class="text-2xl font-bold text-center mt-4 mb-6 text-gray-800">Hostel Management Login</h2>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-gray-700">Email</label>
+          <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-100" placeholder="Enter your email" required>
+        </div>
+        <div>
+          <label class="block text-gray-700">Password</label>
+          <input type="password" id="password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-100" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 rounded-lg hover:opacity-90">Login</button>
+      </form>
+      <p class="text-center text-sm text-gray-600 mt-4">Don't have an account? <a href="#" class="text-blue-600 font-semibold">Register here</a></p>
+    </div>
+  </div>
+
+  <!-- Dashboard Section (Hidden initially) -->
+  <div id="dashboard">
+    <!-- Header -->
+    <header style="background-color:#4b89bc; color:#fff; padding: 10px 20px;">
+      <div class="header-container">
+        <div class="header-title">Smart Hostel Management</div>
+        <div class="header-actions">
+          <input type="text" class="search-input" placeholder="Search..." />
+          <button class="icon-btn" title="Notifications">&#128276;</button>
+          <button class="icon-btn" title="Settings">&#9881;</button>
+          <button onclick="logout()" class="btn btn-light btn-sm">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Image -->
+    <div class="container mt-3 text-center">
+      <img src="hostel img.png" alt="Hostel Management System" class="img-fluid rounded">
+    </div>
+
+    <!-- Welcome Section -->
+    <h2 class="text-center mt-4" style="color: #4b89bc;">Welcome to the Smart Hostel Management System</h2>
+    <p class="text-center">Manage your hostel efficiently with our smart tools.</p>
+
+    <!-- Navigation Cards -->
+    <div class="container">
+      <div class="row">
+        <a href="room.html" class="col-xs-12 col-sm-6 col-lg-3 text-decoration-none">
+          <div class="h4">Room Allotment</div>
+        </a>
+        <a href="emergency.html" class="col-xs-12 col-sm-6 col-lg-3 text-decoration-none">
+          <div class="h4">Emergency</div>
+        </a>
+        <a href="change.html" class="col-xs-12 col-sm-6 col-lg-3 text-decoration-none">
+          <div class="h4">Room Change</div>
+        </a>
+        <a href="grie.html" class="col-xs-12 col-sm-6 col-lg-3 text-decoration-none">
+          <div class="h4">Grievance</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: #4b89bc; color: #fff; text-align: center; padding: 10px 0; margin-top: 40px;">
+      &copy; 2025 Smart Hostel System | All Rights Reserved
+    </footer>
+  </div>
+
+  <!-- Login Script -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+
+      if(email === "admin@hostel.com" && password === "admin123") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+      } else {
+        alert("Invalid email or password");
+      }
+    });
+
+    function logout() {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("login").style.display = "flex";
+    }
+  </script>
+</body>
+</html>
