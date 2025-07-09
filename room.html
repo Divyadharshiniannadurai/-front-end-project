@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Room Allotment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+  <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-xl">
+    <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">Room Allotment</h2>
+
+    <form id="allotmentForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium">Student Name</label>
+        <input type="text" id="studentName" class="w-full px-4 py-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" required />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium">Student ID</label>
+        <input type="text" id="studentId" class="w-full px-4 py-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" required />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium">Select Block</label>
+        <select id="block" class="w-full px-4 py-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" required>
+          <option value="">-- Select Block --</option>
+          <option value="A">Block A</option>
+          <option value="B">Block B</option>
+          <option value="C">Block C</option>
+          <option value="C">Block d</option>
+          
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium">Room Number</label>
+        <select id="roomNumber" class="w-full px-4 py-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" required>
+          <option value="">-- Select Room --</option>
+          <option value="101">101</option>
+          <option value="102">102</option>
+          <option value="102">103</option>
+          <option value="102">104</option>
+          <option value="102">105</option>
+          <option value="102">106</option>
+          <option value="102">107</option>
+          <option value="102">108</option>
+          <option value="102">109</option>
+          <option value="102">200</option>
+          <option value="201">201</option>
+          <option value="102">202</option>
+          <option value="102">203</option>
+          <option value="102">204</option>
+          <option value="102">205</option>
+          <option value="102">206</option>
+          <option value="102">207</option>
+          <option value="102">208</option>
+          <option value="102">209</option>
+          <option value="102">300</option>
+          <option value="102">301</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Allot Room</button>
+    </form>
+
+    <div id="successMsg" class="text-center mt-4 text-green-600 font-semibold hidden">
+      ✅ Room Allotted Successfully!
+    </div>
+  </div>
+
+  
+  <div class="mt-10 w-full max-w-4xl">
+    <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Allotted Rooms</h3>
+    <table class="w-full table-auto border border-gray-300 bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-blue-600 text-white">
+        <tr>
+          <th class="py-2 px-4 border">Name</th>
+          <th class="py-2 px-4 border">Student ID</th>
+          <th class="py-2 px-4 border">Block</th>
+          <th class="py-2 px-4 border">Room</th>
+        </tr>
+      </thead>
+      <tbody id="roomTable" class="text-center text-gray-700">
+        
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById("allotmentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("studentName").value;
+      const id = document.getElementById("studentId").value;
+      const block = document.getElementById("block").value;
+      const room = document.getElementById("roomNumber").value;
+
+      
+      const table = document.getElementById("roomTable");
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td class="py-2 px-4 border">${name}</td>
+        <td class="py-2 px-4 border">${id}</td>
+        <td class="py-2 px-4 border">${block}</td>
+        <td class="py-2 px-4 border">${room}</td>
+      `;
+
+      table.appendChild(row);
+
+      // Show success message
+      document.getElementById("successMsg").classList.remove("hidden");
+
+      // Reset form
+      document.getElementById("allotmentForm").reset();
+
+      // Hide message after 2 seconds
+      setTimeout(() => {
+        document.getElementById("successMsg").classList.add("hidden");
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>
